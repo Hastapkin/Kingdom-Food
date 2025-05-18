@@ -465,7 +465,12 @@ section {
     pointer-events: none;
 }
 
-.about-image .slide-caption h3,
+.about-image .slide-caption h3{
+    margin: 0;
+    color: #fff;
+    background: none;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
 .about-image .slide-caption p {
     margin: 0;
     color: #fff;
@@ -1535,4 +1540,59 @@ body.contact-page .floating-contact {
         aspect-ratio: 16/9; /* Keep aspect ratio for 1920x1080 */
         width: 100%;
     }
+}
+
+@media (max-width: 600px) {
+  html, body {
+    width: 100vw;
+    min-width: 0;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  .container, section {
+    width: 100vw;
+    min-width: 0;
+    max-width: 100vw;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .about-image .slideshow-container {
+    aspect-ratio: unset !important;
+    width: 100vw !important;
+    height: auto !important;
+    min-height: 160px;
+    max-height: none;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+  }
+  .about-image .slideshow-slide {
+    position: relative;
+    width: 100vw !important;
+    height: auto !important;
+    min-height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-image .slideshow-slide img {
+    width: 100vw !important;
+    height: auto !important;
+    max-width: 100vw !important;
+    max-height: 60vh !important;
+    object-fit: contain !important;
+    object-position: center center;
+    background: #000;
+    border-radius: 0;
+  }
+  .about-image .slide-caption {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    padding: 4px 2vw;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    box-sizing: border-box;
+  }
 }
