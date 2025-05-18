@@ -388,42 +388,44 @@ section {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
     border: 1px solid rgba(195, 117, 59, 0.1); /* Very thin border */
     background-color: #000;
+    aspect-ratio: 16/9; /* Maintain 1920x1080 aspect ratio */
+    height: auto; /* Let height be determined by aspect ratio */
 }
 
 /* Height adjustments - Increased for better impact */
 @media (min-width: 1600px) {
     .about-image .slideshow-container {
-        height: 800px;
+        width: 100%;
     }
 }
 
 @media (min-width: 1200px) {
     .about-image .slideshow-container {
-        height: 750px;
+        width: 100%;
     }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
     .about-image .slideshow-container {
-        height: 650px;
+        width: 100%;
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
     .about-image .slideshow-container {
-        height: 600px;
+        width: 100%;
     }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
     .about-image .slideshow-container {
-        height: 500px;
+        width: 100%;
     }
 }
 
 @media (max-width: 575px) {
     .about-image .slideshow-container {
-        height: 400px;
+        width: 100%;
     }
 }
 
@@ -448,7 +450,7 @@ section {
 .about-image .slideshow-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Changed back to cover for 1920x1080 images */
     object-position: center center;
     display: block;
     border-radius: var(--border-radius-lg);
@@ -1589,4 +1591,25 @@ body.contact-page .floating-contact {
 .homepage-fullscreen .slideshow-dots .dot:hover {
     background: #444 !important;
     border-color: #444 !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .about-image .slideshow-container {
+        aspect-ratio: 16/9; /* Keep aspect ratio for 1920x1080 */
+        height: auto;
+        width: 100%;
+    }
+    
+    .about-image .slideshow-slide img {
+        object-fit: cover; /* Keep cover for 1920x1080 */
+        object-position: center center;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-image .slideshow-container {
+        aspect-ratio: 16/9; /* Keep aspect ratio for 1920x1080 */
+        width: 100%;
+    }
 }
