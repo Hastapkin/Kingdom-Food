@@ -7,6 +7,7 @@ from datetime import datetime
 from config import get_config
 from language import language_selector_middleware, register_template_functions
 from email_utils import send_contact_email
+from vercel_wsgi import handle_request
 
 # Configure logging
 logging.basicConfig(
