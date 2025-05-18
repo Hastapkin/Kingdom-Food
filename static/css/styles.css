@@ -1613,34 +1613,114 @@ body.contact-page .floating-contact {
         background: rgba(0,0,0,0.6);
         width: 100%;
         text-align: center;
-        font-size: 1rem !important;
+        font-size: 16px !important;
         z-index: 999 !important;
         display: block !important;
     }
     
     .about-image .slide-caption h3 {
-        font-size: 1.1rem;
+        font-size: 18px;
         margin-bottom: 2px;
     }
     
     .about-image .slide-caption p {
-        font-size: 0.9rem;
+        font-size: 14px;
         margin: 0;
     }
     
-    /* Ẩn caption trên màn hình quá nhỏ nếu cần thiết */
-    @media screen and (max-height: 400px) {
-        .about-image .slide-caption p {
-            display: none;
-        }
-        
-        .about-image .slide-caption {
-            padding: 8px 10px;
-        }
-        
-        .about-image .slide-caption h3 {
-            font-size: 0.9rem;
-            margin: 0;
-        }
+    .about-image .slideshow-dots {
+        bottom: 60px;
+    }
+}
+
+/* Large Phones (iPhone 12 Pro Max, Samsung S21 Ultra, etc.) */
+@media screen and (max-width: 428px) {
+    .about-image .slideshow-container {
+        height: 500px !important;
+        max-height: 500px !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    
+    .about-image .slide-caption {
+        bottom: 0;
+        padding: 12px 15px;
+        background: rgba(0,0,0,0.6);
+        width: 100%;
+        text-align: center;
+        font-size: 16px !important;
+        z-index: 999 !important;
+        display: block !important;
+    }
+    
+    .about-image .slide-caption h3 {
+        font-size: 18px;
+        margin-bottom: 2px;
+    }
+    
+    .about-image .slide-caption p {
+        font-size: 14px;
+        margin: 0;
+    }
+    
+    .about-image .slideshow-dots {
+        bottom: 60px;
+    }
+}
+
+/* Medium Phones (iPhone X/11/12, Samsung S20, etc.) */
+@media screen and (max-width: 390px) {
+    .about-image .slideshow-container {
+        height: 450px !important;
+        max-height: 450px !important;
+    }
+}
+
+/* Small Phones (iPhone SE, Samsung S10e, etc.) */
+@media screen and (max-width: 375px) {
+    .about-image .slideshow-container {
+        height: 400px !important;
+        max-height: 400px !important;
+    }
+}
+
+/* Extra Small Phones */
+@media screen and (max-width: 350px) {
+    .about-image .slideshow-container {
+        height: 350px !important;
+        max-height: 350px !important;
+    }
+    
+    .about-image .slide-caption h3 {
+        font-size: 16px;
+    }
+    
+    .about-image .slide-caption p {
+        font-size: 13px;
+    }
+}
+
+/* Landscape Mode - All Phones */
+@media screen and (max-height: 450px) and (orientation: landscape) {
+    .about-image .slideshow-container {
+        height: 300px !important;
+        max-height: 300px !important;
+    }
+    
+    .about-image .slide-caption p {
+        display: none;
+    }
+    
+    .about-image .slide-caption {
+        padding: 8px 10px;
+    }
+    
+    .about-image .slide-caption h3 {
+        font-size: 14px;
+        margin: 0;
+    }
+    
+    .about-image .slideshow-dots {
+        bottom: 50px;
     }
 }
