@@ -1671,3 +1671,67 @@ body.contact-page .floating-contact {
         display: none;
     }
 }
+
+/* ===== Mobile Devices - Caption Visibility Fix ===== */
+
+@media screen and (max-width: 767px) {
+    /* Đảm bảo caption luôn hiển thị và có thể kéo xuống xem */
+    .about-image .slideshow-container {
+        position: relative;
+        padding-bottom: 70px !important; /* Dành không gian cho caption */
+        box-sizing: border-box;
+    }
+    
+    .about-image .slideshow-slide {
+        bottom: 70px; /* Đẩy slide lên để dành chỗ cho caption */
+    }
+    
+    .about-image .slide-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        padding: 15px 15px;
+        z-index: 1000 !important;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 70px;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .about-image .slideshow-dots {
+        bottom: 80px; /* Đặt dots phía trên caption */
+        z-index: 999;
+    }
+    
+    /* Cải thiện hiển thị caption */
+    .about-image .slide-caption h3 {
+        margin-top: 0;
+        margin-bottom: 5px;
+        font-size: 18px;
+        color: white;
+    }
+    
+    .about-image .slide-caption p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.4;
+        color: rgba(255,255,255,0.9);
+    }
+}
+
+/* Điều chỉnh cho điện thoại nhỏ hơn */
+@media screen and (max-width: 375px) {
+    .about-image .slideshow-container {
+        padding-bottom: 80px !important; /* Thêm không gian cho caption */
+    }
+    
+    .about-image .slide-caption {
+        padding: 10px 12px;
+        min-height: 80px;
+    }
+}
