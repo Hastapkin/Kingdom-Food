@@ -441,23 +441,7 @@ section {
 
 .about-image .slideshow-slide img {    width: 100%;    height: 100%;    object-fit: cover;    object-position: center center;    display: block;    max-width: none;}
 
-.about-image .slide-caption {
-    position: absolute;
-    left: 0; right: 0;
-    bottom: 8%;
-    color: #fff;
-    text-align: center;
-    z-index: 2;
-    padding: clamp(4px, 1vw, 16px) clamp(8px, 2vw, 32px);
-    font-size: clamp(0.9rem, 2vw, 1.3rem);
-    font-weight: 600;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-    background: none;
-    border-radius: 0;
-    margin: 0;
-    box-sizing: border-box;
-    pointer-events: none;
-}
+.about-image .slide-caption {    position: absolute;    left: 0; right: 0;    bottom: 8%;    color: #fff;    text-align: center;    z-index: 10;    padding: clamp(4px, 1vw, 16px) clamp(8px, 2vw, 32px);    font-size: clamp(0.9rem, 2vw, 1.3rem);    font-weight: 600;    text-shadow: 0 2px 8px rgba(0,0,0,0.5);    background: rgba(0,0,0,0.4);    border-radius: 0;    margin: 0;    box-sizing: border-box;    pointer-events: none;    display: block !important;    opacity: 1 !important;    visibility: visible !important;}
 
 .about-image .slide-caption h3{
     margin: 0;
@@ -1129,16 +1113,7 @@ section {
     }
 }
 
-/* Alternative: Hide caption on very small screens for maximum image focus */
-@media (max-width: 480px) {
-    .about-image .slide-caption {
-        display: none; /* Hide caption completely on very small screens */
-    }
-    
-    .about-image .slideshow-dots {
-        bottom: 15px; /* Move dots up when caption is hidden */
-    }
-}
+/* Caption styling for small screens - now we always show it */@media (max-width: 480px) {    .about-image .slideshow-dots {        bottom: 60px; /* Move dots up to not overlap with caption */    }}
 
 /* ===== Prevent any overflow ===== */
 * {
@@ -1627,5 +1602,45 @@ body.contact-page .floating-contact {
     .about-image .slideshow-nav button:active {
         transform: scale(0.95);
         background: rgba(255,255,255,0.9);
+    }
+}
+
+/* Tối ưu hiển thị caption trên iPhone và thiết bị di động */
+@media screen and (max-width: 428px) { /* iPhone Pro Max width */
+    .about-image .slide-caption {
+        bottom: 0;
+        padding: 12px 15px;
+        background: rgba(0,0,0,0.6);
+        width: 100%;
+        text-align: center;
+        font-size: 1rem !important;
+        z-index: 999 !important;
+        display: block !important;
+    }
+    
+    .about-image .slide-caption h3 {
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+    }
+    
+    .about-image .slide-caption p {
+        font-size: 0.9rem;
+        margin: 0;
+    }
+    
+    /* Ẩn caption trên màn hình quá nhỏ nếu cần thiết */
+    @media screen and (max-height: 400px) {
+        .about-image .slide-caption p {
+            display: none;
+        }
+        
+        .about-image .slide-caption {
+            padding: 8px 10px;
+        }
+        
+        .about-image .slide-caption h3 {
+            font-size: 0.9rem;
+            margin: 0;
+        }
     }
 }
