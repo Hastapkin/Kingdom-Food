@@ -72,12 +72,7 @@
 
 {% block content %}
 <section class="thank-you-section">
-    <div class="slideshow-container">
-        <!-- Slides -->
-        <div class="slideshow-slide active">
-            <div class="slide-background"></div>
-        </div>
-    </div>
+    <div class="slide-background"></div>
     
     <div class="thank-you-container">
         <div class="thank-you-icon">
@@ -96,8 +91,7 @@
         <p class="thank-you-message">{{ t('thankyou_message3') }}</p>
         
         <div class="buttons">
-            <a href="{{ url_for('index') }}" class="btn btn-secondary">{{ t('return_home') }}</a>
-            <a href="{{ url_for('thai_products_page') }}" class="btn btn-primary">{{ t('explore_products') }}</a>
+            <a href="{{ url_for('index') }}" class="btn btn-primary">{{ t('return_home') }}</a>
         </div>
     </div>
 </section>
