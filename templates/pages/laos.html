@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('site_name') }} - {{ t('pages_laos_heading') }}{% endblock %}
+
+{% block content %}
+<div class="slide-background"></div>
+
+<section class="about country-fullscreen-main">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-image">
+                <!-- Product slideshow -->
+                <div class="slideshow-container" data-autoplay="true" data-interval="2500">
+                    <button class="slideshow-pause-btn" aria-label="Pause/Play Slideshow">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <!-- Slides -->
+                    <div class="slideshow-slide active">
+                        <img src="{{ url_for('static', filename='images/slide_images/ex_img_7.jpg') }}" alt="Laotian Rice Products">
+                        <div class="slide-caption">
+                            <h3>Premium Laotian Sticky Rice</h3>
+                            <p>Traditional glutinous rice varieties from Laos</p>
+                        </div>
+                    </div>
+                    <div class="slideshow-slide">
+                        <img src="{{ url_for('static', filename='images/slide_images/ex_img_8.jpg') }}" alt="Laotian Spices">
+                        <div class="slide-caption">
+                            <h3>Authentic Laotian Spices</h3>
+                            <p>Galangal, Laotian ginger, and traditional spice blends</p>
+                        </div>
+                    </div>
+                    <div class="slideshow-slide">
+                        <img src="{{ url_for('static', filename='images/slide_images/ex_img_9.jpg') }}" alt="Laotian Vegetables">
+                        <div class="slide-caption">
+                            <h3>Fresh Laotian Vegetables</h3>
+                            <p>Bamboo shoots, water spinach, and exotic vegetables</p>
+                        </div>
+                    </div>
+                    <div class="slideshow-slide">
+                        <img src="{{ url_for('static', filename='images/slide_images/ex_img_10.jpg') }}" alt="Laotian Preserves">
+                        <div class="slide-caption">
+                            <h3>Traditional Laotian Preserves</h3>
+                            <p>Fermented fish paste, pickled vegetables, and traditional condiments</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation arrows -->
+                    <div class="slideshow-nav">
+                        <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
+                        <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    
+                    <!-- Slide indicators -->
+                    <div class="slideshow-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

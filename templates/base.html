@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="{{ current_lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ t('site_name') }} - {{ t('site_description') }}">
+    <title>{% block title %}{{ t('site_name') }}{% endblock %}</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% block extra_css %}{% endblock %}
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logos/favicon.png') }}">
+</head>
+<body>
+    <!-- Background Pattern -->
+    <div class="page-background"></div>
+
+    <!-- Header -->
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="{{ url_for('index') }}" aria-label="{{ t('site_name') }} Home">
+                    <img src="{{ url_for('static', filename='images/logos/Logo C.png') }}" alt="{{ t('site_name') }} Logo" width="180" height="60">
+                </a>
+            </div>
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="{{ url_for('index') }}" {% if active_page == 'home' %}class="active"{% endif %}>{{ t('nav_home') }}</a></li>
+                    <li><a href="{{ url_for('thailand_page') }}" {% if active_page == 'thai' %}class="active"{% endif %}>{{ t('nav_thailand') }}</a></li>
+                    <li><a href="{{ url_for('vietnam_page') }}" {% if active_page == 'vietnamese' %}class="active"{% endif %}>{{ t('nav_vietnam') }}</a></li>
+                    <li><a href="{{ url_for('laos_page') }}" {% if active_page == 'laos' %}class="active"{% endif %}>{{ t('nav_laos') }}</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                <a href="{{ url_for('change_language', lang_code='en') }}" {% if current_lang == 'en' %}class="active"{% endif %}>EN</a> | 
+                <a href="{{ url_for('change_language', lang_code='vi') }}" {% if current_lang == 'vi' %}class="active"{% endif %}>VI</a> |
+                <a href="{{ url_for('change_language', lang_code='lo') }}" {% if current_lang == 'lo' %}class="active"{% endif %}>LO</a> |
+                <a href="{{ url_for('change_language', lang_code='th') }}" {% if current_lang == 'th' %}class="active"{% endif %}>TH</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main content area -->
+    <main id="main-content">
+        {% block content %}
+        
+        {% endblock %}
+    </main>
+
+    <!-- Main JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    <!-- Enhanced Slideshow -->
+    <script src="{{ url_for('static', filename='js/enhanced-slideshow.js') }}"></script>
+
+    <!-- Presentation -->
+    <script src="{{ url_for('static', filename='js/presentation-addon.js') }}"></script>
+    
+    <!-- Additional JavaScript -->
+    {% block extra_js %}{% endblock %}
+    
+    <!-- Header scroll effect and other page scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('main-header');
+            const backToTopBtn = document.getElementById('back-to-top');
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    header.classList.remove('scrolled');
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            // Back to top button
+            if (backToTopBtn) {
+                backToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            // Flash message handling
+            const closeButtons = document.querySelectorAll('.flash-messages .close-btn');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const alertElement = this.closest('.alert');
+                    if (alertElement) {
+                        alertElement.style.opacity = '0';
+                        setTimeout(() => {
+                            alertElement.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+            
+            // Auto-dismiss flash messages after 5 seconds
+            setTimeout(() => {
+                const flashMessages = document.querySelectorAll('.flash-messages .alert');
+                flashMessages.forEach(message => {
+                    message.style.opacity = '0';
+                    setTimeout(() => {
+                        message.style.display = 'none';
+                    }, 300);
+                });
+            }, 5000);
+        });
+    </script>
+    <a href="{{ url_for('contact') }}" class="floating-contact" data-tooltip="Contact Us" aria-label="Contact Us">
+        <i class="fas fa-envelope"></i>
+    </a>
+</body>
+</html>

@@ -1,0 +1,310 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('site_name') }} - {{ t('contact_heading') }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .contact-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        margin-top: 50px;
+    }
+    
+    .contact-details {
+        flex: 1;
+        min-width: 300px;
+        background-color: var(--bg-color);
+        padding: 40px;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--box-shadow);
+        border: 1px solid rgba(0,0,0,0.04);
+        align-self: flex-start;
+    }
+    
+    .contact-details h3 {
+        color: var(--primary-dark);
+        margin-bottom: 25px;
+        position: relative;
+        display: inline-block;
+        font-size: 2rem;
+    }
+    
+    .contact-details h3:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background-color: var(--primary-color);
+    }
+    
+    .contact-info-item {
+        margin-bottom: 25px;
+        display: flex;
+        align-items: flex-start;
+    }
+    
+    .contact-info-item i {
+        color: var(--primary-color);
+        font-size: 1.2rem;
+        margin-right: 15px;
+        margin-top: 5px;
+    }
+    
+    .contact-info-content h4 {
+        margin-bottom: 5px;
+        color: var(--text-color);
+        font-size: 1.1rem;
+    }
+    
+    .contact-info-content p, .contact-info-content a {
+        color: var(--light-text);
+        line-height: 1.5;
+        margin: 0;
+    }
+    
+    .contact-info-content a:hover {
+        color: var(--primary-color);
+    }
+    
+    .contact-form {
+        flex: 2;
+        min-width: 400px;
+    }
+    
+    @media (max-width: 768px) {
+        .contact-form {
+            min-width: 100%;
+        }
+        
+        .contact-details {
+            min-width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<script>document.body.classList.add('contact-page');</script>
+<div class="slide-background"></div>
+
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-container">
+            <div class="contact-details">
+                <h3>{{ t('contact_info_heading') }}</h3>
+                <div class="contact-info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="contact-info-content">
+                        <h4>{{ t('footer_address') }}</h4>
+                        <p>1 E Liberty St, Suite 600 Reno, NV 89501-1925 USA</p>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="contact-info-content">
+                        <h4>{{ t('footer_email') }}</h4>
+                        <p><a href="mailto:info@kf-asia.com">info@kf-asia.com</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3>{{ t('contact_form_heading') }}</h3>
+                <form id="contactForm" action="{{ url_for('contact') }}" method="post">
+                    <div class="form-group">
+                        <label for="title">{{ t('field_title') }} <span class="required">*</span></label>
+                        <input type="text" id="title" name="title" value="{{ form_data.get('title', '') }}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">{{ t('field_company') }} <span class="required">*</span></label>
+                        <input type="text" id="company" name="company" value="{{ form_data.get('company', '') }}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="website">{{ t('field_website') }}</label>
+                        <input type="url" id="website" name="website" value="{{ form_data.get('website', '') }}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">{{ t('field_address') }} <span class="required">*</span></label>
+                        <input type="text" id="address" name="address" value="{{ form_data.get('address', '') }}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name">{{ t('field_name') }} <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" value="{{ form_data.get('name', '') }}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">{{ t('field_phone') }} <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" value="{{ form_data.get('phone', '') }}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">{{ t('field_email') }} <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" value="{{ form_data.get('email', '') }}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="business">{{ t('field_business') }}</label>
+                        <select id="business" name="business">
+                            <option value="distributor" {% if form_data.get('business') == 'distributor' %}selected{% endif %}>{{ t('option_distributor') }}</option>
+                            <option value="manufacturer" {% if form_data.get('business') == 'manufacturer' %}selected{% endif %}>{{ t('option_manufacturer') }}</option>
+                            <option value="other" {% if form_data.get('business') == 'other' %}selected{% endif %}>{{ t('option_other') }}</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">{{ t('field_message') }} <span class="required">*</span></label>
+                        <textarea id="message" name="message" required>{{ form_data.get('message', '') }}</textarea>
+                    </div>
+                    
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary">{{ t('send_btn') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Enhanced Form Validation
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contactForm');
+        
+        if (form) {
+            // Add custom validation styles
+            const addValidationStyles = () => {
+                const inputs = form.querySelectorAll('input, textarea, select');
+                inputs.forEach(input => {
+                    // Add validation classes
+                    input.addEventListener('blur', function() {
+                        if (this.hasAttribute('required')) {
+                            if (!this.value.trim()) {
+                                this.classList.add('error');
+                                
+                                // Add error message if not exists
+                                let errorMessage = this.nextElementSibling;
+                                if (!errorMessage || !errorMessage.classList.contains('error-message')) {
+                                    errorMessage = document.createElement('div');
+                                    errorMessage.className = 'error-message';
+                                    errorMessage.textContent = '{{ t("field_required") }}';
+                                    this.parentNode.insertBefore(errorMessage, this.nextSibling);
+                                }
+                            } else {
+                                this.classList.remove('error');
+                                
+                                // Remove error message if exists
+                                const errorMessage = this.nextElementSibling;
+                                if (errorMessage && errorMessage.classList.contains('error-message')) {
+                                    errorMessage.remove();
+                                }
+                            }
+                        }
+                    });
+                    
+                    // Special validation for email
+                    if (input.type === 'email') {
+                        input.addEventListener('blur', function() {
+                            if (this.value.trim()) {
+                                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                if (!emailPattern.test(this.value)) {
+                                    this.classList.add('error');
+                                    
+                                    // Add error message if not exists
+                                    let errorMessage = this.nextElementSibling;
+                                    if (!errorMessage || !errorMessage.classList.contains('error-message')) {
+                                        errorMessage = document.createElement('div');
+                                        errorMessage.className = 'error-message';
+                                        errorMessage.textContent = '{{ t("invalid_email") }}';
+                                        this.parentNode.insertBefore(errorMessage, this.nextSibling);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                    
+                    // Remove error on input
+                    input.addEventListener('input', function() {
+                        this.classList.remove('error');
+                        
+                        // Remove error message if exists
+                        const errorMessage = this.nextElementSibling;
+                        if (errorMessage && errorMessage.classList.contains('error-message')) {
+                            errorMessage.remove();
+                        }
+                    });
+                });
+            };
+            
+            // Form submission validation
+            form.addEventListener('submit', function(e) {
+                let isValid = true;
+                const requiredFields = this.querySelectorAll('[required]');
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('error');
+                        
+                        // Add error message if not exists
+                        let errorMessage = field.nextElementSibling;
+                        if (!errorMessage || !errorMessage.classList.contains('error-message')) {
+                            errorMessage = document.createElement('div');
+                            errorMessage.className = 'error-message';
+                            errorMessage.textContent = '{{ t("field_required") }}';
+                            field.parentNode.insertBefore(errorMessage, field.nextSibling);
+                        }
+                    }
+                });
+                
+                // Email validation
+                const emailField = this.querySelector('input[type="email"]');
+                if (emailField && emailField.value) {
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(emailField.value)) {
+                        isValid = false;
+                        emailField.classList.add('error');
+                        
+                        // Add error message if not exists
+                        let errorMessage = emailField.nextElementSibling;
+                        if (!errorMessage || !errorMessage.classList.contains('error-message')) {
+                            errorMessage = document.createElement('div');
+                            errorMessage.className = 'error-message';
+                            errorMessage.textContent = '{{ t("invalid_email") }}';
+                            emailField.parentNode.insertBefore(errorMessage, emailField.nextSibling);
+                        }
+                    }
+                }
+                
+                if (!isValid) {
+                    e.preventDefault();
+                    // Scroll to the first error
+                    const firstError = this.querySelector('.error');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        firstError.focus();
+                    }
+                } else {
+                    // Show loading indication
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> {{ t("sending") }}';
+                        submitBtn.disabled = true;
+                    }
+                }
+            });
+            
+            // Initialize validation styles
+            addValidationStyles();
+        }
+    });
+</script>
+{% endblock %}

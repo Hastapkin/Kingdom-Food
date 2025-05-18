@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('site_name') }} - {{ t('pages_thai_heading') }}{% endblock %}
+
+{% block content %}
+<div class="slide-background"></div>
+
+<section class="about country-fullscreen-main">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-image">
+                <!-- Product slideshow -->
+                <div class="slideshow-container" data-autoplay="true" data-interval="2500">
+                    <button class="slideshow-pause-btn" aria-label="Pause/Play Slideshow">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <!-- Slides -->
+                    <div class="slideshow-slide active">
+                        <img src="{{ url_for('static', filename='images/slide_images/ex_img_1.jpg') }}" alt="Thai Curry Pastes">
+                        <div class="slide-caption">
+                            <h3>Authentic Thai Curry Pastes</h3>
+                            <p>Traditional red, green, and yellow curry pastes</p>
+                        </div>
+                    </div>
+                    <div class="slideshow-slide">
+                        <img src="{{ url_for('static', filename='images/slide_images/ex_img_2.jpg') }}" alt="Thai Rice">
+                        <div class="slide-caption">
+                            <h3>Premium Thai Jasmine Rice</h3>
+                            <p>World-renowned fragrant jasmine rice from Thailand</p>
+                        </div>
+                    </div>
+                    <div class="slideshow-slide">
+                        <img src="{{ url_for('static', filename='images/slide_images/ex_img_3.jpg') }}" alt="Thai Herbs">
+                        <div class="slide-caption">
+                            <h3>Fresh Thai Herbs & Spices</h3>
+                            <p>Thai basil, galangal, kaffir lime leaves, and more</p>
+                        </div>
+                    </div>
+                    <div class="slideshow-slide">
+                        <img src="{{ url_for('static', filename='images/slide_images/ex_img_4.jpg') }}" alt="Thai Sauces">
+                        <div class="slide-caption">
+                            <h3>Traditional Thai Sauces</h3>
+                            <p>Fish sauce, oyster sauce, and traditional condiments</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation arrows -->
+                    <div class="slideshow-nav">
+                        <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
+                        <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    
+                    <!-- Slide indicators -->
+                    <div class="slideshow-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

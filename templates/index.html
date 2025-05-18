@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('site_name') }} - {{ t('site_description') }}{% endblock %}
+
+{% block content %}
+<div class="slide-background"></div>
+
+<section class="about country-fullscreen-main homepage-fullscreen">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-image">
+                <div class="slideshow-container" data-autoplay="true" data-interval="2500">
+                    <button class="slideshow-pause-btn" aria-label="Pause/Play Slideshow">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <div class="slideshow-nav">
+                        <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
+                        <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="slideshow-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                    </div>
+                    <div class="slideshow-slide active">
+                        <img src="{{ url_for('static', filename='images/slide_images/homepage_1.png') }}" alt="Homepage Slide 1">
+                    </div>
+                    <div class="slideshow-slide">
+                        <img src="{{ url_for('static', filename='images/slide_images/homepage_2.png') }}" alt="Homepage Slide 2">
+                    </div>
+                    <div class="slideshow-slide">
+                        <img src="{{ url_for('static', filename='images/slide_images/homepage_3.png') }}" alt="Homepage Slide 3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
