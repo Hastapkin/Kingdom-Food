@@ -22,9 +22,7 @@
     --success-color: #0CCE6B;
     
     /* Typography */
-    --font-primary: 'Noto Sans', sans-serif;
-    --font-secondary: 'Noto Sans', serif;
-    
+    --font-primary: 'Noto Sans', sans-serif;    
     /* Effects */
     --transition-speed: 0.1s;
     --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -44,9 +42,9 @@
 }
 
 html {
-    font-size: 16px;
+    font-size: clamp(12px, 2vw, 20px);
     scroll-behavior: smooth;
-    scroll-padding-top: 100px;
+    scroll-padding-top: clamp(40px, 8vw, 100px);
     overflow-x: hidden;
     width: 100%;
 }
@@ -61,6 +59,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
     width: 100%;
+    font-size: 1rem;
 }
 
 .page-background {
@@ -78,7 +77,7 @@ body {
 
 /* ===== Typography ===== */
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 0.5em;
@@ -86,16 +85,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 { 
-    font-size: 3.5rem;
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.5rem, 6vw, 3.5rem);
 }
 h2 { 
-    font-size: 2.8rem;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-size: clamp(1.2rem, 4vw, 2.5rem);
 }
 h3 { 
-    font-size: 2rem;
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1rem, 3vw, 2rem);
 }
 
 p {
@@ -126,34 +122,71 @@ img {
 
 /* ===== Layout - Optimized for Full Width ===== */
 .container {
-    max-width: 100%;
+    width: 100%;
+    max-width: 100vw;
     margin: 0 auto;
-    padding: 0 15px; /* Reduced padding */
+    padding: 0 clamp(8px, 2vw, 32px);
     position: relative;
+}
+
+/* Mobile first approach */
+@media (max-width: 767px) {
+    .container {
+        width: 100%;
+        padding: 0 10px;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .about-text {
+        padding: 15px;
+        min-height: auto;
+    }
 }
 
 @media (min-width: 768px) {
     .container {
-        padding: 0 30px; /* Reduced from 40px */
+        width: 90%;
+        padding: 0 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 85%;
+        padding: 0 25px;
+    }
+    
+    .about-content {
+        grid-template-columns: 2.4fr 0.9fr;
+        gap: 40px;
     }
 }
 
 @media (min-width: 1200px) {
     .container {
-        max-width: 1400px;
-        padding: 0 30px; /* Reduced from 40px */
+        width: 80%;
+        padding: 0 30px;
+    }
+    
+    .about-content {
+        grid-template-columns: 2.6fr 0.9fr;
+        gap: 50px;
     }
 }
 
 @media (min-width: 1600px) {
     .container {
-        max-width: 1600px;
-        padding: 0 30px; /* Reduced from 50px */
+        width: 75%;
+        padding: 0 30px;
     }
 }
 
 section {
-    padding: 100px 0;
+    padding: clamp(24px, 6vw, 100px) 0;
     position: relative;
 }
 
@@ -164,7 +197,7 @@ section {
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 22.5px 0;
+    padding: clamp(10px, 2vw, 22.5px) 0;
     transition: all 0.3s ease;
     width: 100%;
 }
@@ -276,7 +309,7 @@ section {
 
 /* ===== Hero Section ===== */
 .hero {
-    padding: 120px 0 100px;
+    padding: clamp(40px, 10vw, 120px) 0 clamp(30px, 8vw, 100px);
     position: relative;
     overflow: hidden;
     background-color: rgb(255, 246, 233);
@@ -328,6 +361,7 @@ section {
     position: relative;
     padding: 50px 0 120px;
     overflow: hidden;
+    width: 100%;
 }
 
 .about-content {
@@ -338,28 +372,28 @@ section {
     width: 100%;
 }
 
-/* Better proportions - More space for image */
 @media (min-width: 992px) {
     .about-content {
-        grid-template-columns: 2.4fr 0.9fr; /* Even more space for image */
-        gap: 50px; /* Reduced gap */
+        grid-template-columns: 2.4fr 0.9fr;
+        gap: 50px;
     }
 }
 
 @media (min-width: 1200px) {
     .about-content {
-        grid-template-columns: 2.6fr 0.9fr; /* Maximum space for image */
+        grid-template-columns: 2.6fr 0.9fr;
         gap: 60px;
     }
 }
 
 .about-text {
-    padding: 40px;
+    padding: clamp(10px, 3vw, 40px) !important;
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: var(--border-radius-lg);
     box-shadow: var(--box-shadow);
     height: fit-content;
     min-height: 400px;
+    width: 100%;
 }
 
 @media (min-width: 1200px) {
@@ -370,75 +404,34 @@ section {
 }
 
 .about-image {
-    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-@media (max-width: 991px) {
-    .about-image {
-        order: -1;
-    }
-}
-
-/* ===== Enhanced Slideshow - Minimal UI for Image Focus ===== */
 .about-image .slideshow-container {
     position: relative;
     width: 100%;
+    aspect-ratio: 16/9;
+    width: 100%;
+    max-width: 100vw;
+    height: auto;
+    background: #000;
+    border-radius: 16px;
     overflow: hidden;
-    border-radius: var(--border-radius-lg);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-    border: 1px solid rgba(195, 117, 59, 0.1); /* Very thin border */
-    background-color: #000;
-    aspect-ratio: 16/9; /* Maintain 1920x1080 aspect ratio */
-    height: auto; /* Let height be determined by aspect ratio */
-}
-
-/* Height adjustments - Increased for better impact */
-@media (min-width: 1600px) {
-    .about-image .slideshow-container {
-        width: 100%;
-    }
-}
-
-@media (min-width: 1200px) {
-    .about-image .slideshow-container {
-        width: 100%;
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-    .about-image .slideshow-container {
-        width: 100%;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-    .about-image .slideshow-container {
-        width: 100%;
-    }
-}
-
-@media (min-width: 576px) and (max-width: 767px) {
-    .about-image .slideshow-container {
-        width: 100%;
-    }
-}
-
-@media (max-width: 575px) {
-    .about-image .slideshow-container {
-        width: 100%;
-    }
 }
 
 .about-image .slideshow-slide {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     opacity: 0;
-    transition: opacity 0.5s ease;
-    border-radius: var(--border-radius-lg);
-    overflow: hidden;
+    transition: opacity 0.5s;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .about-image .slideshow-slide.active {
@@ -446,68 +439,44 @@ section {
     z-index: 1;
 }
 
-/* Make slideshow images truly full and clean */
 .about-image .slideshow-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Changed back to cover for 1920x1080 images */
+    object-fit: cover;
     object-position: center center;
     display: block;
-    border-radius: var(--border-radius-lg);
-    filter: brightness(1) contrast(1.05); /* Slightly brighter */
-    will-change: opacity;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
 }
 
-/* Remove vignette effect for cleaner image */
-.about-image .slideshow-slide::after {
-    display: none; /* Remove dark overlay completely */
-}
-
-/* Much smaller, less intrusive slide captions */
 .about-image .slide-caption {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(
-        to top, 
-        rgba(0, 0, 0, 0.6) 0%,
-        rgba(0, 0, 0, 0.3) 60%,
-        transparent 100%
-    );
-    padding: 15px 20px 12px; /* Much smaller padding */
-    color: white;
-    text-align: left;
-    backdrop-filter: blur(2px);
+    left: 0; right: 0;
+    bottom: 8%;
+    color: #fff;
+    text-align: center;
     z-index: 2;
-    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
-}
-
-/* Smaller caption text */
-.about-image .slide-caption h3 {
-    color: white;
-    margin-bottom: 4px; /* Reduced margin */
-    font-size: clamp(1rem, 2.2vw, 1.3rem); /* Smaller text */
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    padding: clamp(4px, 1vw, 16px) clamp(8px, 2vw, 32px);
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
     font-weight: 600;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    background: none;
+    border-radius: 0;
+    margin: 0;
+    box-sizing: border-box;
+    pointer-events: none;
 }
 
+.about-image .slide-caption h3,
 .about-image .slide-caption p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: clamp(0.8rem, 1.7vw, 0.95rem); /* Smaller text */
-    margin-bottom: 0;
-    line-height: 1.3;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+    margin: 0;
+    color: #fff;
+    background: none;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 
-/* Smaller, more subtle navigation buttons */
 .about-image .slideshow-nav {
     position: absolute;
     top: 50%;
-    left: 0;
-    right: 0;
+    left: 0; right: 0;
     transform: translateY(-50%);
     display: flex;
     justify-content: space-between;
@@ -516,60 +485,76 @@ section {
 }
 
 .about-image .slideshow-nav button {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(5px);
-    color: var(--primary-color);
-    border: 1px solid rgba(195, 117, 59, 0.2);
-    width: 40px; /* Smaller buttons */
-    height: 40px;
+    background: rgba(255,255,255,0.85);
+    color: #C3753B;
+    border: 1px solid rgba(195,117,59,0.2);
+    width: 40px; height: 40px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    font-size: 1rem; /* Smaller icons */
-    opacity: 0.85; /* More transparent */
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    opacity: 0.85;
 }
 
 .about-image .slideshow-nav button:hover {
-    background: rgba(255, 255, 255, 0.9);
-    color: var(--primary-color);
-    transform: scale(1.05);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    background: #fff;
+    color: #C3753B;
     opacity: 1;
 }
 
-/* Smaller, more subtle dots */
 .about-image .slideshow-dots {
     position: absolute;
-    bottom: 12px; /* Closer to bottom */
+    bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 8px; /* Smaller gap */
+    gap: 8px;
     z-index: 3;
 }
 
 .about-image .dot {
-    width: 8px; /* Smaller dots */
-    height: 8px;
+    width: 8px; height: 8px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
     cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(3px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
 }
 
 .about-image .dot.active,
 .about-image .dot:hover {
-    background: white;
-    transform: scale(1.25);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    border-color: white;
+    background: #C3753B;
+    border-color: #C3753B;
+}
+
+@media (max-width: 768px) {
+    .about-image .slideshow-container {
+        border-radius: 10px;
+        aspect-ratio: 16/9;
+    }
+    .about-image .slide-caption {
+        font-size: 1rem;
+        padding: 0 4px;
+    }
+    .about-image .slideshow-nav button {
+        width: 32px; height: 32px; font-size: 0.95rem;
+    }
+    .about-image .slideshow-dots {
+        bottom: 8px;
+        gap: 6px;
+    }
+    .about-image .dot {
+        width: 7px; height: 7px;
+    }
+}
+
+@media (max-width: 400px) {
+    .about-image .slide-caption {
+        font-size: 0.9rem;
+        padding: 4px 2px;
+    }
 }
 
 /* ===== About Text Styling ===== */
@@ -580,7 +565,7 @@ section {
 }
 
 .about-text p {
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
     line-height: 1.8;
     margin-bottom: 25px;
     color: var(--text-color);
@@ -679,7 +664,7 @@ section {
     flex: 1;
     min-width: 300px;
     background-color: var(--bg-color);
-    padding: 40px;
+    padding: clamp(10px, 3vw, 40px) !important;
     border-radius: var(--border-radius-lg);
     box-shadow: var(--box-shadow);
     border: 1px solid rgba(0,0,0,0.04);
@@ -738,7 +723,7 @@ section {
     flex: 2;
     min-width: 400px;
     background-color: var(--bg-color);
-    padding: 50px;
+    padding: clamp(10px, 3vw, 40px) !important;
     border-radius: var(--border-radius-lg);
     box-shadow: var(--box-shadow);
     border: 1px solid rgba(0,0,0,0.04);
@@ -803,14 +788,14 @@ section {
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 14px 18px;
+    padding: clamp(8px, 2vw, 14px) clamp(8px, 2vw, 18px);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-md);
     background-color: rgba(0, 0, 0, 0.02);
     color: var(--text-color);
     font-family: var(--font-primary);
     transition: all 0.3s ease;
-    font-size: 16px;
+    font-size: clamp(1rem, 2vw, 1.2rem);
 }
 
 .form-group input:focus,
@@ -853,13 +838,13 @@ section {
 /* ===== Button Styles ===== */
 .btn {
     display: inline-block;
-    padding: 12px 30px;
+    padding: clamp(8px, 2vw, 16px) clamp(16px, 4vw, 40px);
     background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: var(--border-radius-md);
     font-family: var(--font-primary);
-    font-size: 1rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     font-weight: 600;
     text-align: center;
     cursor: pointer;
@@ -1179,32 +1164,11 @@ section {
 }
 
 /* ===== Language Support ===== */
-html[lang="lo"] body {
-    font-family: 'Noto Sans Lao', var(--font-primary);
-    line-height: 1.7;
-}
-
-html[lang="lo"] h1, 
-html[lang="lo"] h2, 
-html[lang="lo"] h3, 
-html[lang="lo"] h4, 
-html[lang="lo"] h5, 
-html[lang="lo"] h6 {
-    font-family: 'Noto Serif Lao', var(--font-secondary);
-}
-
-html[lang="th"] body {
-    font-family: 'Sarabun', var(--font-primary);
-    line-height: 1.7;
-}
-
-html[lang="th"] h1, 
-html[lang="th"] h2, 
-html[lang="th"] h3, 
-html[lang="th"] h4, 
-html[lang="th"] h5, 
-html[lang="th"] h6 {
-    font-family: 'Charm', var(--font-secondary);
+html[lang="lo"] body,
+html[lang="lo"] h1, html[lang="lo"] h2, html[lang="lo"] h3, html[lang="lo"] h4, html[lang="lo"] h5, html[lang="lo"] h6,
+html[lang="th"] body,
+html[lang="th"] h1, html[lang="th"] h2, html[lang="th"] h3, html[lang="th"] h4, html[lang="th"] h5, html[lang="th"] h6 {
+    font-family: var(--font-primary) !important;
 }
 
 /* ===== Accessibility ===== */
@@ -1303,10 +1267,10 @@ img {
 /* ===== Floating Contact Icon ===== */
 .floating-contact {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
+    bottom: clamp(10px, 3vw, 30px);
+    right: clamp(10px, 3vw, 30px);
+    width: clamp(36px, 6vw, 60px);
+    height: clamp(36px, 6vw, 60px);
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     border-radius: 50%;
     display: flex;
@@ -1317,7 +1281,7 @@ img {
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
-    border: 3px solid rgba(255, 255, 255, 0.9);
+    border: clamp(2px, 0.3vw, 3px) solid rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
 }
 
@@ -1333,7 +1297,7 @@ img {
 
 .floating-contact i {
     color: white;
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
     transition: all 0.3s ease;
 }
 
@@ -1347,7 +1311,7 @@ img {
         box-shadow: 0 5px 15px rgba(195, 117, 59, 0.4);
     }
     50% {
-        box-shadow: 0 5px 15px rgba(195, 117, 59, 0.4), 0 0 0 10px rgba(195, 117, 59, 0.1);
+        box-shadow: 0 5px 15px rgba(195, 117, 59, 0.4), 0 0 0 clamp(8px, 1vw, 10px) rgba(195, 117, 59, 0.1);
     }
     100% {
         box-shadow: 0 5px 15px rgba(195, 117, 59, 0.4);
@@ -1363,84 +1327,49 @@ body.contact-page .floating-contact {
     display: none;
 }
 
-.floating-contact:hover:before {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(-50%) translateX(-5px);
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .floating-contact {
-        bottom: 25px;
-        left: 25px;
-        width: 55px;
-        height: 55px;
+        bottom: clamp(15px, 2.5vw, 25px);
+        right: clamp(15px, 2.5vw, 25px);
+        width: clamp(45px, 4.5vw, 55px);
+        height: clamp(45px, 4.5vw, 55px);
     }
     
     .floating-contact i {
-        font-size: 1.3rem;
-    }
-    
-    /* Position tooltip above on mobile */
-    .floating-contact:before {
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%) translateY(-75px);
-        bottom: 75px;
-        top: auto;
-    }
-    
-    .floating-contact:hover:before {
-        transform: translateX(-50%) translateY(-80px);
+        font-size: clamp(1.1rem, 1.3vw, 1.3rem);
     }
 }
 
 @media (max-width: 576px) {
     .floating-contact {
-        bottom: 20px;
-        left: 20px;
-        width: 50px;
-        height: 50px;
+        bottom: clamp(10px, 2vw, 20px);
+        right: clamp(10px, 2vw, 20px);
+        width: clamp(40px, 4vw, 50px);
+        height: clamp(40px, 4vw, 50px);
     }
     
     .floating-contact i {
-        font-size: 1.2rem;
+        font-size: clamp(1rem, 1.2vw, 1.2rem);
     }
 }
 
-.floating-contact {
-    margin-bottom: 1px;
-}
-
-@media (max-width: 768px) {
-    .floating-contact {
-        margin-bottom: 75px;
-    }
-}
-
-@media (max-width: 576px) {
-    .floating-contact {
-        margin-bottom: 70px;
-    }
-}
-
-/* ===== Alternative positions ===== */
+/* Alternative positions */
 /* If you want it on the right side instead */
 .floating-contact.right {
     left: auto;
-    right: 30px;
+    right: clamp(20px, 3vw, 30px);
 }
 
 @media (max-width: 768px) {
     .floating-contact.right {
-        right: 25px;
+        right: clamp(15px, 2.5vw, 25px);
     }
 }
 
 @media (max-width: 576px) {
     .floating-contact.right {
-        right: 20px;
+        right: clamp(10px, 2vw, 20px);
     }
 }
 
@@ -1548,12 +1477,6 @@ body.contact-page .floating-contact {
     border-radius: 0 !important;
     padding: 2vw 3vw 1.5vw;
     font-size: 1.5vw;
-    background: linear-gradient(
-        to top, 
-        rgba(0, 0, 0, 0.7) 0%,
-        rgba(0, 0, 0, 0.4) 60%,
-        transparent 100%
-    );
 }
 
 .country-fullscreen-main .about-image .slideshow-nav,
@@ -1602,7 +1525,7 @@ body.contact-page .floating-contact {
     }
     
     .about-image .slideshow-slide img {
-        object-fit: cover; /* Keep cover for 1920x1080 */
+        object-fit: contain; /* Keep cover for 1920x1080 */
         object-position: center center;
     }
 }
