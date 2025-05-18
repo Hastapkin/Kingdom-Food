@@ -17,19 +17,47 @@
                         <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
                         <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
                     </div>
+                    <div class="slideshow-slide active">
+                        <img src="{{ url_for('static', filename='images/slide_images/ex_img_1.jpg') }}" alt="Homepage Slide 1">
+                        <div class="slide-caption">
+                            <h3>Title 1</h3>
+                            <p>Text 1</p>
+                        </div>
+                    </div>
+                    <div class="slideshow-slide">
+                        <img src="{{ url_for('static', filename='images/slide_images/ex_img_2.jpg') }}" alt="Homepage Slide 2">
+                        <div class="slide-caption">
+                            <h3>Title 2</h3>
+                            <p>Text 2</p>
+                        </div>
+                    </div>
+                    <div class="slideshow-slide">
+                        <img src="{{ url_for('static', filename='images/slide_images/ex_img_3.jpg') }}" alt="Homepage Slide 3">
+                        <div class="slide-caption">
+                            <h3>Title 3</h3>
+                            <p>Text 3</p>
+                        </div>
+                    </div>
+                    <div class="slideshow-slide">
+                        <img src="{{ url_for('static', filename='images/slide_images/ex_img_4.jpg') }}" alt="Thai Sauces">
+                        <div class="slide-caption">
+                            <h3>Title 4</h3>
+                            <p>Text 4</p>
+                        </div>
+                    </div>
+                    <div class="slideshow-slide">
+                        <img src="{{ url_for('static', filename='images/slide_images/ex_img_5.jpg') }}" alt="Thai Sauces">
+                        <div class="slide-caption">
+                            <h3>Title 5</h3>
+                            <p>Text 5</p>
+                        </div>
+                    </div>
                     <div class="slideshow-dots">
                         <span class="dot active" data-slide="0"></span>
                         <span class="dot" data-slide="1"></span>
                         <span class="dot" data-slide="2"></span>
-                    </div>
-                    <div class="slideshow-slide active">
-                        <img src="{{ url_for('static', filename='images/slide_images/homepage_1.png') }}" alt="Homepage Slide 1">
-                    </div>
-                    <div class="slideshow-slide">
-                        <img src="{{ url_for('static', filename='images/slide_images/homepage_2.png') }}" alt="Homepage Slide 2">
-                    </div>
-                    <div class="slideshow-slide">
-                        <img src="{{ url_for('static', filename='images/slide_images/homepage_3.png') }}" alt="Homepage Slide 3">
+                        <span class="dot" data-slide="3"></span>
+                        <span class="dot" data-slide="4"></span>
                     </div>
                 </div>
             </div>
