@@ -825,3 +825,243 @@ select:focus-visible {
         font-size: 0.9rem;
     }
 }
+/* ===== Mobile Navigation Menu Enhancement ===== */
+
+/* Show mobile menu button on smaller screens */
+@media (max-width: 1024px) {
+    .mobile-menu-btn {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        cursor: pointer;
+        padding: 10px;
+        border-radius: var(--border-radius-md);
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-btn:hover {
+        background-color: rgba(195, 117, 59, 0.1);
+        color: var(--primary-dark);
+    }
+    
+    /* Hide navigation items initially on mobile */
+    .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-color);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+    
+    /* Show navigation when active */
+    .main-nav.active {
+        max-height: 300px;
+        opacity: 1;
+        transform: translateY(0);
+        padding: 20px 0;
+    }
+    
+    /* Stack navigation items vertically */
+    .main-nav ul {
+        flex-direction: column;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .main-nav ul li {
+        margin: 0;
+        width: 100%;
+    }
+    
+    .main-nav ul li a {
+        display: block;
+        padding: 15px 30px;
+        margin: 0;
+        width: 100%;
+        box-sizing: border-box;
+        border-bottom: 1px solid rgba(195, 117, 59, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .main-nav ul li:last-child a {
+        border-bottom: none;
+    }
+    
+    .main-nav ul li a:hover {
+        color: var(--primary-color);
+        transform: translateX(5px);
+    }
+    
+    .main-nav ul li a.active {
+        color: var(--primary-color);
+        font-weight: 700;
+    }
+    
+    /* Remove the hover underline effect on mobile */
+    .main-nav ul li a:after {
+        display: none;
+    }
+}
+
+/* Medium screens - adjust header layout */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .main-header .container {
+        padding: 0 20px;
+    }
+    
+    .logo img {
+        max-width: 180px;
+    }
+    
+    .language-selector {
+        font-size: 0.85rem;
+        padding: 5px 10px;
+    }
+}
+
+/* Small screens - further adjustments */
+@media (max-width: 768px) {
+    .main-header {
+        padding: 15px 0;
+    }
+    
+    .main-header .container {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+    
+    .logo {
+        flex: 1;
+    }
+    
+    .logo img {
+        max-width: 160px;
+    }
+    
+    .mobile-menu-btn {
+        order: 3;
+        margin-left: 15px;
+    }
+    
+    .language-selector {
+        order: 2;
+        margin-right: 15px;
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+    
+    .main-nav {
+        order: 4;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        margin-top: 1px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+    .main-header {
+        padding: 12px 0;
+    }
+    
+    .logo img {
+        max-width: 140px;
+    }
+    
+    .language-selector {
+        font-size: 0.75rem;
+        padding: 3px 6px;
+        gap: 6px;
+    }
+    
+    .language-selector a {
+        padding: 0 3px;
+    }
+    
+    .mobile-menu-btn {
+        font-size: 1.3rem;
+        padding: 8px;
+    }
+    
+    .main-nav ul li a {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Animation for menu icon transformation */
+.mobile-menu-btn i {
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu-btn.active i.fa-bars {
+    transform: rotate(90deg);
+}
+
+.mobile-menu-btn.active i.fa-times {
+    transform: rotate(0deg);
+}
+
+/* Ensure header maintains its sticky behavior with mobile menu */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow: visible; /* Allow mobile menu to extend below header */
+}
+
+/* Backdrop for mobile menu */
+@media (max-width: 1024px) {
+    .main-nav.active::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        opacity: 0;
+        animation: fadeIn 0.3s ease forwards;
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Smooth transitions for all navigation elements */
+.main-nav,
+.main-nav ul,
+.main-nav ul li,
+.main-nav ul li a {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Focus states for accessibility */
+.mobile-menu-btn:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.main-nav ul li a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: -2px;
+}
